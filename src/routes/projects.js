@@ -19,12 +19,12 @@ router.get('/:id', authenticate, (req, res) => {
 
 // POST create project (members + admin)
 router.post('/', authenticate, (req, res) => {
-  const { name, description } = req.body;
+  const { name, description, status } = req.body;
   if (!name) return res.status(400).json({ error: 'Name is required' });
 
   const result = db.prepare(
-    'INSERT INTO projects (name, description) VALUES (?, ?)'
-  ).run(name, description || '');
+    'INSERT INTO projects (name, description, status) VALUES (?, ?, ?)'
+  ).run(name, description || '', status || 'active');
 
   const project = db.prepare('SELECT * FROM projects WHERE id = ?').get(result.lastInsertRowid);
   res.status(201).json({ project });
