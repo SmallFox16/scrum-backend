@@ -21,6 +21,7 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     description TEXT,
+    status TEXT NOT NULL DEFAULT 'active',
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 
@@ -34,6 +35,12 @@ db.exec(`
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 `);
+
+// Add status column if missing (migration for existing databases)
+const columns = db.prepare("PRAGMA table_info(projects)").all();
+if (!columns.some((c) => c.name === 'status')) {
+  db.exec("ALTER TABLE projects ADD COLUMN status TEXT NOT NULL DEFAULT 'active'");
+}
 
 // Seed default users if none exist
 const existingUsers = db.prepare('SELECT * FROM users').all();

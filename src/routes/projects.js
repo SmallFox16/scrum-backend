@@ -32,13 +32,13 @@ router.post('/', authenticate, (req, res) => {
 
 // PUT update project
 router.put('/:id', authenticate, (req, res) => {
-  const { name, description } = req.body;
+  const { name, description, status } = req.body;
   const project = db.prepare('SELECT * FROM projects WHERE id = ?').get(req.params.id);
   if (!project) return res.status(404).json({ error: 'Project not found' });
 
   db.prepare(
-    'UPDATE projects SET name = ?, description = ? WHERE id = ?'
-  ).run(name || project.name, description ?? project.description, req.params.id);
+    'UPDATE projects SET name = ?, description = ?, status = ? WHERE id = ?'
+  ).run(name || project.name, description ?? project.description, status || project.status, req.params.id);
 
   const updated = db.prepare('SELECT * FROM projects WHERE id = ?').get(req.params.id);
   res.json({ project: updated });
