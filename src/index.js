@@ -16,7 +16,7 @@ app.use(cors({
   origin: [
     'http://localhost:5173',
     'http://localhost:5174',
-    'https://scrum-project-manager.vercel.app'
+    'https://scrum-project-manager-six.vercel.app'
   ]
 }));
 app.use(express.json());
