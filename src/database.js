@@ -1,7 +1,11 @@
 import Database from 'better-sqlite3';
 import bcrypt from 'bcryptjs';
+import { mkdirSync } from 'fs';
+import { dirname } from 'path';
 
-const db = new Database('scrum.db');
+const dbPath = process.env.NODE_ENV === 'production' ? '/app/data/scrum.db' : 'scrum.db';
+mkdirSync(dirname(dbPath), { recursive: true });
+const db = new Database(dbPath);
 
 // Create tables
 db.exec(`
