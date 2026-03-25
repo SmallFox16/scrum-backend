@@ -15,7 +15,8 @@ db.exec(`
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     role TEXT NOT NULL DEFAULT 'member',
-    gender TEXT DEFAULT 'male'
+    gender TEXT DEFAULT 'male',
+    avatar TEXT
   );
 
   CREATE TABLE IF NOT EXISTS projects (
@@ -53,6 +54,9 @@ if (!projectCols.some((c) => c.name === 'status')) {
 const userCols = db.prepare("PRAGMA table_info(users)").all();
 if (!userCols.some((c) => c.name === 'gender')) {
   db.exec("ALTER TABLE users ADD COLUMN gender TEXT DEFAULT 'male'");
+}
+if (!userCols.some((c) => c.name === 'avatar')) {
+  db.exec("ALTER TABLE users ADD COLUMN avatar TEXT");
 }
 
 const taskCols = db.prepare("PRAGMA table_info(tasks)").all();
