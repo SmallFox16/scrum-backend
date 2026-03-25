@@ -16,7 +16,8 @@ app.use(cors({
   origin: [
     'http://localhost:5173',
     'http://localhost:5174',
-    'https://scrum-project-manager-six.vercel.app'
+    'https://scrum-project-manager-six.vercel.app',
+    'https://welcoming-bravery-loadtracker.up.railway.app'
   ]
 }));
 app.use(express.json());
