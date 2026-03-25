@@ -7,7 +7,7 @@ const router = express.Router();
 // GET /api/users — Return all users (excluding passwords)
 router.get('/', authenticate, (req, res) => {
   const users = db.prepare(
-    'SELECT id, name, email, role FROM users ORDER BY name ASC'
+    'SELECT id, name, email, role, gender FROM users ORDER BY name ASC'
   ).all();
   res.json({ users });
 });

@@ -49,6 +49,10 @@ router.delete('/:id', authenticate, (req, res) => {
   const project = db.prepare('SELECT * FROM projects WHERE id = ?').get(req.params.id);
   if (!project) return res.status(404).json({ error: 'Project not found' });
 
+  if (project.name === 'Product Backlog') {
+    return res.status(403).json({ error: 'Cannot delete the Product Backlog project' });
+  }
+
   db.prepare('DELETE FROM projects WHERE id = ?').run(req.params.id);
   res.json({ message: 'Project deleted' });
 });

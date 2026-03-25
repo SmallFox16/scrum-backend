@@ -37,7 +37,8 @@ router.post('/login', (req, res) => {
       id: user.id,
       name: user.name,
       email: user.email,
-      role: user.role
+      role: user.role,
+      gender: user.gender || 'male'
     }
   });
 });
@@ -54,7 +55,7 @@ router.get('/me', (req, res) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = db.prepare('SELECT id, name, email, role FROM users WHERE id = ?').get(decoded.id);
+    const user = db.prepare('SELECT id, name, email, role, gender FROM users WHERE id = ?').get(decoded.id);
     res.json({ user });
   } catch {
     res.status(401).json({ error: 'Invalid token' });
