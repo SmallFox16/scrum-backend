@@ -78,6 +78,9 @@ if (!taskCols.some((c) => c.name === 'time_estimate')) {
 if (!taskCols.some((c) => c.name === 'due_date')) {
   db.exec("ALTER TABLE tasks ADD COLUMN due_date TEXT");
 }
+if (!taskCols.some((c) => c.name === 'priority_level')) {
+  db.exec("ALTER TABLE tasks ADD COLUMN priority_level TEXT DEFAULT NULL");
+}
 
 // ============================================================
 // Seed default users if none exist

@@ -138,12 +138,12 @@ router.get('/:id', authenticate, (req, res) => {
 
 // POST create task
 router.post('/', authenticate, (req, res) => {
-  const { title, description, status, assigned_to, assignee_ids, project_id, sprint_project_id, time_estimate, due_date } = req.body;
+  const { title, description, status, assigned_to, assignee_ids, project_id, sprint_project_id, time_estimate, due_date, priority_level } = req.body;
   if (!title) return res.status(400).json({ error: 'Title is required' });
 
   const result = db.prepare(`
-    INSERT INTO tasks (title, description, status, assigned_to, project_id, sprint_project_id, time_estimate, due_date)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO tasks (title, description, status, assigned_to, project_id, sprint_project_id, time_estimate, due_date, priority_level)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     title,
     description || '',
@@ -152,7 +152,8 @@ router.post('/', authenticate, (req, res) => {
     project_id || null,
     sprint_project_id || null,
     time_estimate || null,
-    due_date || null
+    due_date || null,
+    priority_level || null
   );
 
   const taskId = result.lastInsertRowid;
@@ -187,13 +188,13 @@ router.put('/reorder', authenticate, (req, res) => {
 
 // PUT update task
 router.put('/:id', authenticate, (req, res) => {
-  const { title, description, status, assigned_to, assignee_ids, project_id, sprint_project_id, time_estimate, due_date } = req.body;
+  const { title, description, status, assigned_to, assignee_ids, project_id, sprint_project_id, time_estimate, due_date, priority_level } = req.body;
   const task = db.prepare('SELECT * FROM tasks WHERE id = ?').get(req.params.id);
   if (!task) return res.status(404).json({ error: 'Task not found' });
 
   db.prepare(`
     UPDATE tasks SET title = ?, description = ?, status = ?, assigned_to = ?,
-      project_id = ?, sprint_project_id = ?, time_estimate = ?, due_date = ?
+      project_id = ?, sprint_project_id = ?, time_estimate = ?, due_date = ?, priority_level = ?
     WHERE id = ?
   `).run(
     title ?? task.title,
@@ -204,6 +205,7 @@ router.put('/:id', authenticate, (req, res) => {
     sprint_project_id !== undefined ? sprint_project_id : task.sprint_project_id,
     time_estimate !== undefined ? time_estimate : task.time_estimate,
     due_date !== undefined ? due_date : task.due_date,
+    priority_level !== undefined ? priority_level : task.priority_level,
     req.params.id
   );
 
