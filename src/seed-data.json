@@ -1,0 +1,695 @@
+[
+  {
+    "title": "As a developer, I want a reusable collision detection system so that objects can interact consistently.",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a developer, I want setup instructions so that anyone can run the project easily.",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a client, I want there to be a relatively unique art style in the game itself to be researched so it is thought out / Research",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": "1 Hour",
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a team, we want to verify the game is playable so that we can confidently demo it",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a client, I would like there to know that my developers have practiced source control effectively / Research",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": "1 Hour",
+    "assignees": "Cayleigh, Cooper",
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a client, I want the dev team to have some knowledge related to java script and css for browser games / Research",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": "1 Hour",
+    "assignees": "Ash, Cayleigh",
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a developer, I want a defined structure for game objects so that features can be built consistently.",
+    "status": "done",
+    "priority": "high",
+    "estimate": null,
+    "assignees": "Auggie",
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a developer, I want a structured Git repository so that we can collaborate without conflicts. (aware we have this figured out, just wanted us...)",
+    "status": "done",
+    "priority": "high",
+    "estimate": null,
+    "assignees": "Alexander, Ash",
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a developer, I want a working project setup so that all team members can run the game locally.",
+    "status": "done",
+    "priority": "high",
+    "estimate": null,
+    "assignees": "Cayleigh",
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the game to start in a ready state so that I can begin gameplay intentionally.",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": null,
+    "assignees": null,
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a developer, I want a (RTM) so that I can ensure all requirements are tracked, tested, and validated.",
+    "status": "in_review",
+    "priority": "high",
+    "estimate": null,
+    "assignees": "Ash",
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the ball to bounce off the paddle so that I can keep it in play.",
+    "status": "done",
+    "priority": "high",
+    "estimate": "30 Mins",
+    "assignees": "Alexander",
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to launch the ball at the start of the game so that I can begin gameplay.",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": "30 Mins",
+    "assignees": null,
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want there to be bricks on the screen in a wall so that I may have an obstacle to defeat.",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": "Time estimate: 1 hour",
+    "assignees": null,
+    "sprint": "Sprint 2",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to have consistent feedback on if I am hitting a brick so that I may track my progress through the game",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": "30 minutes",
+    "assignees": null,
+    "sprint": "Sprint 2",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the game to have a gap between the paddle and any brick so I have room to fire and bounce the ball.",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": "45 Mins",
+    "assignees": null,
+    "sprint": "Sprint 2",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want there to be a nice short title and/or logo made without AI so I know that I am playing a particular game.",
+    "status": "to_be_refined",
+    "priority": "high",
+    "estimate": "Time estimate: 15 min",
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the game to track my deaths consistently and verbosely because I want to know how much longer I have left.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the game to be winnable after breaking all blocks on screen per level",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": "Time estimate: 2 hours",
+    "assignees": null,
+    "sprint": "Sprint 2",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the ball to collide with bricks so that I can break them and progress.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": "Time estimate: 1 hr 30 min",
+    "assignees": null,
+    "sprint": "Sprint 2",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to launch the ball at the start of a level using mouse or keyboard input so that I can begin gameplay when ready.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": "Time estimate: 1 hour",
+    "assignees": null,
+    "sprint": "Sprint 2",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the ball to reflect realistically based on collision angle with an object so that I can predict its trajectory with skill.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": "Time estimate: 2 hours",
+    "assignees": null,
+    "sprint": "Sprint 2",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to have a fixed number of blocks in different layouts on screen per level as to have a finite goal",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": "Time estimate: 1 hour",
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want game objects to be visible on screen so that I can interact with them.",
+    "status": "done",
+    "priority": "high",
+    "estimate": "1 hour",
+    "assignees": "Auggie",
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the game to continuously update and render so that gameplay can occur in real time.",
+    "status": "done",
+    "priority": "high",
+    "estimate": null,
+    "assignees": "Robert",
+    "sprint": "Sprint 1",
+    "source": "backlog"
+  },
+  {
+    "title": "Acceptance Criteria: Projectile can be launched / Projectile collides with bricks / Projectile follows defined physics",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to fire a projectile that can bounce and damage bricks so that I have additional ways to clear obstacles.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the game to be winnable after breaking all blocks on screen per level",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": "Time estimate: 2 hours",
+    "assignees": null,
+    "sprint": "Sprint 2",
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the game to have more than one level",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want the ball to collide with bricks so that I can break them and progress.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": "Time estimate: 1 hr 30 min",
+    "assignees": null,
+    "sprint": "Sprint 2",
+    "source": "backlog"
+  },
+  {
+    "title": "As a gamer, I want there to be a clear space between the bricks and the top border of the screen to inform me there are no bricks a...",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a user, I want a bright, diverse and high contrast color palette throughout the game to make it easier for me to see while being ...",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want bricks to have different colors so that I can visually distinguish them.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a Player, I want the game to give me three chances before I die because I want some leeway on my mistakes",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want a clear game over screen so that I understand when I lose.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to see my score update in real time so that I stay engaged during gameplay.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to earn points when I break bricks so that I can track my performance.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to progress to the next level after clearing all bricks so that I can continue playing.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want each level to have a unique block layout so that the game feels varied and progressively challenging.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a user, I say there should be unique art and themes in the game to stand out to me.",
+    "status": "to_be_refined",
+    "priority": "medium",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to collect power-ups with my paddle so that I can activate them.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want power-ups to drop from destroyed bricks so that I can gain temporary advantages.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to be able to play on my phone because I only have time to play on the run",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, The solution must allow the player to restart from the beginning with reset stats",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to be able to pause the game so I can do things and go back to the game.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to see my score update in real time so that I stay engaged during gameplay.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to toggle sound and music on or off so that I can control my experience.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want background music so that gameplay feels more immersive.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want sound effects when hitting bricks or walls so that the game feels responsive.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want a timer for each level so that I can track how fast I complete it.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want different types of power-ups (e.g., multi-ball, larger paddle, faster ball) so that gameplay feels varied.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to earn bonus points under certain conditions so that gameplay feels rewarding and Dynamic.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want bricks that are harder to reach (deeper in the level) to be worth more points so that skillful play is rewarded.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want different bricks to give different points so that some targets are more valuable.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to earn points when I destroy bricks so that I can track my performance.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want customizable visual themes so that the game looks more interesting.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a user, I want my platform or paddle to able to increase and decrease in length both due to power ups acquired to make the ga...",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want my score to be saved after the game ends so that it appears on the leaderboard.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to enter a custom username so that my scores are identifiable.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want to see a leaderboard so that I can compare my performance with others.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a player, I want a timer for each level so that I can track how quickly I complete it.",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a user, I want to be able to input my own image as the ball as to give me more control over the visuals",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "As a user, I want to be able to start from the beginning of the game at any point in the gameplay so I don't feel chained to a bad r...",
+    "status": "to_be_refined",
+    "priority": "low",
+    "estimate": null,
+    "assignees": null,
+    "sprint": null,
+    "source": "backlog"
+  },
+  {
+    "title": "Create test cases for RTM",
+    "status": "todo",
+    "priority": "medium",
+    "estimate": "Ongoing",
+    "assignees": "Cooper, Marcus",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "Add/create css file",
+    "status": "done",
+    "priority": "high",
+    "estimate": null,
+    "assignees": "Cayleigh",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "Test Cases for all code based work",
+    "status": "todo",
+    "priority": "medium",
+    "estimate": "2 hours",
+    "assignees": "Cooper, Marcus",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "Create initial JS",
+    "status": "done",
+    "priority": null,
+    "estimate": "60 seconds",
+    "assignees": "Robert",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "Create stationary ball starting at center of paddle, slightly above it, for now, which is visible with no logic yet",
+    "status": "done",
+    "priority": "medium",
+    "estimate": "<15mins",
+    "assignees": "Marcus",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "Create \"hello Web\" html page",
+    "status": "done",
+    "priority": "high",
+    "estimate": "<10mins",
+    "assignees": "Auggie",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "Create stationary (for now) paddle at the bottom center of our boundary, with space between it and the floor, that is visible",
+    "status": "done",
+    "priority": "high",
+    "estimate": "<15 mins",
+    "assignees": "Marcus",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "Create walls as boundaries of the game, with hard boundary bottom to start",
+    "status": "done",
+    "priority": "high",
+    "estimate": "<20 mins",
+    "assignees": "Cayleigh",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "Restructure Git to match Git Workflow Diagram by Ash",
+    "status": "done",
+    "priority": "high",
+    "estimate": "<15 mins",
+    "assignees": "Alexander, Ash",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "As a player, I want the ball to bounce off walls except the floor so that it remains in the game area.",
+    "status": "in_review",
+    "priority": "high",
+    "estimate": "Time estimate: 45 mins",
+    "assignees": "Alexander",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "As a player, I want to move the paddle left and right using keyboard or mouse so that I can position it to hit the ball.",
+    "status": "in_review",
+    "priority": "high",
+    "estimate": "30 minutes",
+    "assignees": "Alexander",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "As a player, I want a single ball to move continuously without gravity so that gameplay remains consistent.",
+    "status": "in_review",
+    "priority": "high",
+    "estimate": "45 Mins",
+    "assignees": "Alexander",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "As a player, I want to have control over a paddle so I can have input for keyboard and/or mouse in the game.",
+    "status": "in_review",
+    "priority": "high",
+    "estimate": "45 Mins",
+    "assignees": "Alexander",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  },
+  {
+    "title": "As a player, I want to have a screen with fixed boundaries so I can multitask and see my game.",
+    "status": "done",
+    "priority": "high",
+    "estimate": "1 Hour",
+    "assignees": "Cayleigh",
+    "sprint": "Sprint 1",
+    "source": "Sprint 1"
+  }
+]

@@ -1,7 +1,10 @@
 import Database from 'better-sqlite3';
 import bcrypt from 'bcryptjs';
-import { mkdirSync } from 'fs';
-import { dirname } from 'path';
+import { mkdirSync, readFileSync } from 'fs';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const dbPath = process.env.NODE_ENV === 'production' ? '/app/data/scrum.db' : 'scrum.db';
 mkdirSync(dirname(dbPath), { recursive: true });
@@ -134,6 +137,77 @@ if (!productBacklog) {
     "INSERT INTO projects (name, description, status) VALUES (?, ?, ?)"
   ).run('Product Backlog', 'Central backlog for all product backlog items', 'active');
   console.log('Product Backlog project created');
+}
+
+// ============================================================
+// Seed sprint projects and PBI data if tasks table is empty
+// ============================================================
+
+const existingTasks = db.prepare('SELECT COUNT(*) as c FROM tasks').get();
+if (existingTasks.c === 0) {
+  // Ensure Sprint 1 and Sprint 2 projects exist
+  const sprintProjects = {};
+  for (const sprintName of ['Sprint 1', 'Sprint 2']) {
+    let project = db.prepare('SELECT * FROM projects WHERE name = ?').get(sprintName);
+    if (!project) {
+      const result = db.prepare(
+        "INSERT INTO projects (name, description, status) VALUES (?, ?, ?)"
+      ).run(sprintName, `${sprintName} sprint backlog`, 'active');
+      project = db.prepare('SELECT * FROM projects WHERE id = ?').get(result.lastInsertRowid);
+    }
+    sprintProjects[sprintName] = project.id;
+  }
+
+  const pbProject = db.prepare("SELECT * FROM projects WHERE name = 'Product Backlog'").get();
+
+  // Build user name → id map
+  const userMap = {};
+  for (const u of db.prepare('SELECT id, name FROM users').all()) {
+    userMap[u.name.toLowerCase()] = u.id;
+  }
+
+  // Load seed data
+  try {
+    const seedData = JSON.parse(readFileSync(join(__dirname, 'seed-data.json'), 'utf8'));
+
+    const insertTask = db.prepare(`
+      INSERT INTO tasks (title, description, status, project_id, sprint_project_id, priority_level, time_estimate)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `);
+    const insertAssignee = db.prepare(
+      'INSERT OR IGNORE INTO task_assignees (task_id, user_id) VALUES (?, ?)'
+    );
+
+    const seedAll = db.transaction(() => {
+      for (const item of seedData) {
+        const sprintId = item.sprint ? (sprintProjects[item.sprint] || null) : null;
+
+        const result = insertTask.run(
+          item.title,
+          '',
+          item.status,
+          pbProject.id,
+          sprintId,
+          item.priority,
+          item.estimate
+        );
+
+        if (item.assignees) {
+          const names = item.assignees.split(',').map(s => s.trim().toLowerCase());
+          for (const name of names) {
+            if (userMap[name]) {
+              insertAssignee.run(result.lastInsertRowid, userMap[name]);
+            }
+          }
+        }
+      }
+    });
+    seedAll();
+
+    console.log(`Seeded ${seedData.length} PBIs from seed-data.json`);
+  } catch (err) {
+    console.warn('Could not load seed-data.json, skipping PBI seed:', err.message);
+  }
 }
 
 export default db;
