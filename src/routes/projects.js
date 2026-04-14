@@ -4,9 +4,14 @@ import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// GET all projects
+// GET all projects (with task counts)
 router.get('/', authenticate, (req, res) => {
-  const projects = db.prepare('SELECT * FROM projects ORDER BY created_at DESC').all();
+  const projects = db.prepare(`
+    SELECT p.*,
+      (SELECT COUNT(*) FROM tasks t WHERE t.project_id = p.id OR t.sprint_project_id = p.id) AS task_count
+    FROM projects p
+    ORDER BY p.created_at DESC
+  `).all();
   res.json({ projects });
 });
 

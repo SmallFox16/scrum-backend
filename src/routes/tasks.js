@@ -53,13 +53,51 @@ function setAssignees(taskId, userIds) {
   })();
 }
 
-// Attach assignees to task objects
+// Helper: get subtask counts for multiple tasks at once
+function getSubtaskCounts(taskIds) {
+  if (taskIds.length === 0) return {};
+  const placeholders = taskIds.map(() => '?').join(',');
+  const rows = db.prepare(`
+    SELECT parent_task_id, COUNT(*) as count
+    FROM subtasks
+    WHERE parent_task_id IN (${placeholders})
+    GROUP BY parent_task_id
+  `).all(...taskIds);
+  const map = {};
+  for (const row of rows) {
+    map[row.parent_task_id] = row.count;
+  }
+  return map;
+}
+
+// Helper: get subtask summaries for multiple tasks at once
+function getSubtaskSummaries(taskIds) {
+  if (taskIds.length === 0) return {};
+  const placeholders = taskIds.map(() => '?').join(',');
+  const rows = db.prepare(`
+    SELECT * FROM subtasks
+    WHERE parent_task_id IN (${placeholders})
+    ORDER BY sort_order ASC, id ASC
+  `).all(...taskIds);
+  const map = {};
+  for (const row of rows) {
+    if (!map[row.parent_task_id]) map[row.parent_task_id] = [];
+    map[row.parent_task_id].push(row);
+  }
+  return map;
+}
+
+// Attach assignees and subtask info to task objects
 function attachAssignees(tasks) {
   const ids = tasks.map((t) => t.id);
   const assigneeMap = getAssigneesForTasks(ids);
+  const subtaskCountMap = getSubtaskCounts(ids);
+  const subtaskMap = getSubtaskSummaries(ids);
   return tasks.map((t) => ({
     ...t,
     assignees: assigneeMap[t.id] || [],
+    subtask_count: subtaskCountMap[t.id] || 0,
+    subtasks: subtaskMap[t.id] || [],
   }));
 }
 

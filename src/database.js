@@ -46,6 +46,16 @@ db.exec(`
     user_id INTEGER NOT NULL REFERENCES users(id),
     PRIMARY KEY (task_id, user_id)
   );
+
+  CREATE TABLE IF NOT EXISTS subtasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    parent_task_id INTEGER NOT NULL REFERENCES tasks(id) ON DELETE CASCADE,
+    title TEXT NOT NULL,
+    description TEXT DEFAULT '',
+    status TEXT DEFAULT 'todo',
+    sort_order INTEGER DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
 `);
 
 // ============================================================
