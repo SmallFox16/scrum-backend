@@ -96,12 +96,10 @@ if (!taskCols.some((c) => c.name === 'priority_level')) {
 }
 
 // ============================================================
-// Seed default users if none exist
+// Seed default users (any that are missing, by email)
 // ============================================================
 
-const existingUsers = db.prepare('SELECT * FROM users').all();
-
-if (existingUsers.length === 0) {
+{
   const users = [
     { name: 'Admin',     email: 'admin@scrum.com',      password: 'admin123',     role: 'admin',  gender: 'male'   },
     { name: 'Marcus',    email: 'marcus@scrum.com',      password: 'marcus123',    role: 'member', gender: 'male'   },
@@ -113,18 +111,26 @@ if (existingUsers.length === 0) {
     { name: 'Lucien',    email: 'lucien@scrum.com',      password: 'lucien123',    role: 'member', gender: 'male'   },
     { name: 'Ash',       email: 'ash@scrum.com',         password: 'ash123',       role: 'member', gender: 'female' },
     { name: 'Auggie',    email: 'auggie@scrum.com',      password: 'auggie123',    role: 'member', gender: 'male'   },
+    { name: 'CJ',        email: 'cj@scrum.com',          password: 'cj123',        role: 'member', gender: 'male'   },
+    { name: 'Ethan',     email: 'ethan@scrum.com',       password: 'ethan123',     role: 'member', gender: 'male'   },
   ];
 
+  const findByEmail = db.prepare('SELECT id FROM users WHERE email = ?');
   const insert = db.prepare(
     'INSERT INTO users (name, email, password, role, gender) VALUES (?, ?, ?, ?, ?)'
   );
 
+  const created = [];
   for (const user of users) {
+    if (findByEmail.get(user.email)) continue;
     const hashed = bcrypt.hashSync(user.password, 10);
     insert.run(user.name, user.email, hashed, user.role, user.gender);
+    created.push(user.email);
   }
 
-  console.log('Default users created');
+  if (created.length > 0) {
+    console.log(`Default users created: ${created.join(', ')}`);
+  }
 }
 
 // ============================================================
