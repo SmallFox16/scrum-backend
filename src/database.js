@@ -1,10 +1,7 @@
 import Database from 'better-sqlite3';
 import bcrypt from 'bcryptjs';
-import { mkdirSync, readFileSync } from 'fs';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+import { mkdirSync } from 'fs';
+import { dirname } from 'path';
 
 const dbPath = process.env.NODE_ENV === 'production' ? '/app/data/scrum.db' : 'scrum.db';
 mkdirSync(dirname(dbPath), { recursive: true });
@@ -105,11 +102,7 @@ if (!taskCols.some((c) => c.name === 'priority_level')) {
     { name: 'Marcus',    email: 'marcus@scrum.com',      password: 'marcus123',    role: 'member', gender: 'male'   },
     { name: 'Alexander', email: 'alexander@scrum.com',   password: 'alexander123', role: 'member', gender: 'male'   },
     { name: 'Robert',    email: 'robert@scrum.com',      password: 'robert123',    role: 'member', gender: 'male'   },
-    { name: 'Cayleigh',  email: 'cayleigh@scrum.com',    password: 'cayleigh123',  role: 'member', gender: 'female' },
-    { name: 'Brandon',   email: 'brandon@scrum.com',     password: 'brandon123',   role: 'member', gender: 'male'   },
-    { name: 'Cooper',    email: 'cooper@scrum.com',      password: 'cooper123',    role: 'member', gender: 'male'   },
     { name: 'Lucien',    email: 'lucien@scrum.com',      password: 'lucien123',    role: 'member', gender: 'male'   },
-    { name: 'Ash',       email: 'ash@scrum.com',         password: 'ash123',       role: 'member', gender: 'female' },
     { name: 'Auggie',    email: 'auggie@scrum.com',      password: 'auggie123',    role: 'member', gender: 'male'   },
     { name: 'CJ',        email: 'cj@scrum.com',          password: 'cj123',        role: 'member', gender: 'male'   },
     { name: 'Ethan',     email: 'ethan@scrum.com',       password: 'ethan123',     role: 'member', gender: 'male'   },
@@ -134,85 +127,30 @@ if (!taskCols.some((c) => c.name === 'priority_level')) {
 }
 
 // ============================================================
-// Seed "Product Backlog" project if it doesn't exist
+// Seed the base projects: Product Backlog, Sprint 1, Sprint 2 (all empty)
 // ============================================================
 
-const productBacklog = db.prepare("SELECT * FROM projects WHERE name = 'Product Backlog'").get();
-if (!productBacklog) {
-  db.prepare(
-    "INSERT INTO projects (name, description, status) VALUES (?, ?, ?)"
-  ).run('Product Backlog', 'Central backlog for all product backlog items', 'active');
-  console.log('Product Backlog project created');
-}
+{
+  const baseProjects = [
+    ['Product Backlog', 'Central backlog for all product backlog items'],
+    ['Sprint 1',        'Sprint 1 sprint backlog'],
+    ['Sprint 2',        'Sprint 2 sprint backlog'],
+  ];
 
-// ============================================================
-// Seed sprint projects and PBI data if tasks table is empty
-// ============================================================
+  const findByName = db.prepare('SELECT id FROM projects WHERE name = ?');
+  const insert = db.prepare(
+    'INSERT INTO projects (name, description, status) VALUES (?, ?, ?)'
+  );
 
-const existingTasks = db.prepare('SELECT COUNT(*) as c FROM tasks').get();
-if (existingTasks.c === 0) {
-  // Ensure Sprint 1 and Sprint 2 projects exist
-  const sprintProjects = {};
-  for (const sprintName of ['Sprint 1', 'Sprint 2']) {
-    let project = db.prepare('SELECT * FROM projects WHERE name = ?').get(sprintName);
-    if (!project) {
-      const result = db.prepare(
-        "INSERT INTO projects (name, description, status) VALUES (?, ?, ?)"
-      ).run(sprintName, `${sprintName} sprint backlog`, 'active');
-      project = db.prepare('SELECT * FROM projects WHERE id = ?').get(result.lastInsertRowid);
-    }
-    sprintProjects[sprintName] = project.id;
+  const created = [];
+  for (const [name, description] of baseProjects) {
+    if (findByName.get(name)) continue;
+    insert.run(name, description, 'active');
+    created.push(name);
   }
 
-  const pbProject = db.prepare("SELECT * FROM projects WHERE name = 'Product Backlog'").get();
-
-  // Build user name → id map
-  const userMap = {};
-  for (const u of db.prepare('SELECT id, name FROM users').all()) {
-    userMap[u.name.toLowerCase()] = u.id;
-  }
-
-  // Load seed data
-  try {
-    const seedData = JSON.parse(readFileSync(join(__dirname, 'seed-data.json'), 'utf8'));
-
-    const insertTask = db.prepare(`
-      INSERT INTO tasks (title, description, status, project_id, sprint_project_id, priority_level, time_estimate)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
-    `);
-    const insertAssignee = db.prepare(
-      'INSERT OR IGNORE INTO task_assignees (task_id, user_id) VALUES (?, ?)'
-    );
-
-    const seedAll = db.transaction(() => {
-      for (const item of seedData) {
-        const sprintId = item.sprint ? (sprintProjects[item.sprint] || null) : null;
-
-        const result = insertTask.run(
-          item.title,
-          '',
-          item.status,
-          pbProject.id,
-          sprintId,
-          item.priority,
-          item.estimate
-        );
-
-        if (item.assignees) {
-          const names = item.assignees.split(',').map(s => s.trim().toLowerCase());
-          for (const name of names) {
-            if (userMap[name]) {
-              insertAssignee.run(result.lastInsertRowid, userMap[name]);
-            }
-          }
-        }
-      }
-    });
-    seedAll();
-
-    console.log(`Seeded ${seedData.length} PBIs from seed-data.json`);
-  } catch (err) {
-    console.warn('Could not load seed-data.json, skipping PBI seed:', err.message);
+  if (created.length > 0) {
+    console.log(`Base projects created: ${created.join(', ')}`);
   }
 }
 
